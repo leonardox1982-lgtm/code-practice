@@ -1,5 +1,7 @@
 # code-practice · 代码练习仓库
 
+[![tests](https://github.com/leonardox1982-lgtm/code-practice/actions/workflows/ci.yml/badge.svg)](https://github.com/leonardox1982-lgtm/code-practice/actions/workflows/ci.yml)
+
 个人编程练习与学习记录。每道练习都是**可运行、可验证**的：配套单元测试会自动检查实现对不对，本地一条命令跑通，GitHub Actions 上也会自动跑。
 
 - 仓库地址：<https://github.com/leonardox1982-lgtm/code-practice>
@@ -59,6 +61,9 @@ python -m unittest -v
 
 > 本机 Python 装在 `C:\Users\Administrator\AppData\Local\Programs\Python\Python313\python.exe`，
 > 若 `python` 不在 PATH 里，用完整路径代替即可。
+>
+> 在 VS Code 里按 `Ctrl+Shift+P` → **Tasks: Run Test Task** 也能一键跑；
+> 想跑单道题就在打开该题目录的文件时用「测试：只跑当前打开的练习」。
 
 ## 推荐的练习方式
 

@@ -1,0 +1,30 @@
+{
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "files.encoding": "utf8",
+  "editor.tabSize": 4,
+  "editor.rulers": [100],
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    "README.md": "solution.py, test_solution.py, *.test.mjs, package.json",
+    "solution.py": "test_solution.py",
+    "array-utils.mjs": "array-utils.test.mjs, package.json"
+  },
+  "[python]": {
+    "editor.tabSize": 4
+  },
+  "[javascript]": {
+    "editor.tabSize": 2
+  },
+  "[json]": {
+    "editor.tabSize": 2
+  },
+  "[yaml]": {
+    "editor.tabSize": 2
+  },
+  "[markdown]": {
+    "editor.tabSize": 2,
+    "files.trimTrailingWhitespace": false
+  }
+}
