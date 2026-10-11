@@ -22,11 +22,13 @@ code-practice/
 │   ├── 04-discrete-math/           离散数学（对应 MIT 6.042J 的数论部分）
 │   ├── 05-data-analysis/           数据分析入门：CSV 读取与统计量
 │   └── 06-web-js/                  JavaScript / Node 支线
+├── .solutions/                     ← 参考答案，与 exercises/ 同构（别提前偷看）
 ├── notes/                          学习笔记（中文）
 │   └── mit-6.042j/                 与数学课对应的笔记
 ├── playground/                     沙盒，随便写，不进 CI
 └── tools/
     ├── run_all_tests.py            一键跑全部测试
+    ├── reference.py                对答案 / 还原 / 清回骨架 / 归档答案
     └── new_exercise.py             脚手架：生成一道新练习
 ```
 
@@ -35,7 +37,7 @@ code-practice/
 ```
 exercises/<赛道>/<题号-题目>/
 ├── README.md          题面：要求、提示、验收标准
-├── solution.py        可运行的参考实现（测试跑的就是它）
+├── solution.py        你的作答区（出厂只有函数签名和文档，没有答案）
 └── test_solution.py   单元测试
 ```
 
@@ -65,24 +67,36 @@ python -m unittest -v
 > 在 VS Code 里按 `Ctrl+Shift+P` → **Tasks: Run Test Task** 也能一键跑；
 > 想跑单道题就在打开该题目录的文件时用「测试：只跑当前打开的练习」。
 
-## 推荐的练习方式
+## 怎么练
 
-1. 打开某道题的 `README.md` 读题面；
-2. **把 `solution.py` 清空或改掉，自己写一版**；
-3. 在题目目录里跑测试：
+打开任何一道题，`solution.py` 出厂时都是**骨架** —— 只有函数签名、文档字符串和
+`raise NotImplementedError`，不会一打开就看到答案。
 
-   ```bash
-   python -m unittest -v
-   ```
+```bash
+cd exercises/01-python-basics/01-fizzbuzz
 
-4. 看自己改了什么：`git diff`；
-5. 想回到参考实现：
+cat README.md                                            # 1. 读题面
+#                                                        # 2. 在 solution.py 里写实现
+python -m unittest -v                                    # 3. 跑测试
 
-   ```bash
-   git checkout -- exercises/01-python-basics/01-fizzbuzz/solution.py
-   ```
+python ../../../tools/reference.py show 01-fizzbuzz      # 4. 对答案（不动你的文件）
+python ../../../tools/reference.py restore 01-fizzbuzz   # 5. 看答案直接跑起来
+python ../../../tools/reference.py blank 01-fizzbuzz     # 6. 想从零重来
+```
 
-测试永远只比对 `solution.py`，所以「自己写 → 跑测试 → 对照参考 → 一键还原」这个循环天然成立。
+在仓库根目录跑更省事，题号支持模糊匹配：
+
+```bash
+python tools/reference.py list              # 每道题的作答状态 + 总进度
+python tools/reference.py show 01-fizz       # 打印参考答案
+python tools/reference.py restore 01-fizz    # 用参考答案覆盖你的文件
+python tools/reference.py blank 01-fizz      # 把你的文件清回骨架
+```
+
+> `restore` / `blank` 会覆盖你已经写的内容，所以对「已作答」的文件默认拒绝执行，
+> 确认要动就加 `--force`。
+
+测试永远只比对 `solution.py`，所以「写 → 测 → 对答案 → 重来」这个循环天然成立。
 
 ## 新增一道练习
 
@@ -92,6 +106,22 @@ python tools/new_exercise.py 03-algorithms 04-two-sum
 
 会在 `exercises/03-algorithms/04-two-sum/` 下生成 README + solution 骨架 + 测试骨架。
 写完照着 `README.md` 里的验收标准把测试补全即可。
+
+参考实现写好后归档进 `.solutions/`，原文件会自动清成骨架：
+
+```bash
+python tools/reference.py save 03-algorithms/04-two-sum
+```
+
+---
+
+## 关于 `.solutions/` 与 CI
+
+- `.solutions/` 与 `exercises/` 目录结构一一对应，存放每道题的**参考答案**。
+- CI 会先把参考答案铺回 `exercises/` 再跑测试 —— 它验证的是**题目与参考答案是否自洽**，
+  跟你本地做到哪一题无关。
+- 所以你提交自己的作答后 CI 依然会绿（它跑的不是你的代码）。
+  自己的实现过没过，以本地 `python tools/run_all_tests.py` 为准。
 
 ---
 

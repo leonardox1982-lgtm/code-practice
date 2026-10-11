@@ -45,6 +45,26 @@
         "cwd": "${workspaceFolder}"
       },
       "problemMatcher": []
+    },
+    {
+      "label": "参考实现：对答案",
+      "type": "shell",
+      "command": "python",
+      "args": ["${workspaceFolder}/tools/reference.py", "show", "${input:exslug}"],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "参考实现：清回骨架（会覆盖当前作答）",
+      "type": "shell",
+      "command": "python",
+      "args": ["${workspaceFolder}/tools/reference.py", "blank", "${input:exslug}", "--force"],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
     }
   ],
   "inputs": [
@@ -59,6 +79,12 @@
       "type": "promptString",
       "description": "练习目录名（题号-英文短名）",
       "default": "04-two-sum"
+    },
+    {
+      "id": "exslug",
+      "type": "promptString",
+      "description": "题目标识（题号或题号-短名）",
+      "default": "01-fizzbuzz"
     }
   ]
 }

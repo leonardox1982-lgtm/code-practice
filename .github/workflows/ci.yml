@@ -11,24 +11,28 @@ permissions:
 
 jobs:
   python:
-    name: Python 练习测试
+    name: Python · 参考答案自洽性
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v7
         with:
           python-version: "3.13"
+      - name: 铺开参考答案
+        run: python tools/reference.py restore --all --force
       - name: 运行全部练习测试
         run: python tools/run_all_tests.py
 
   node:
-    name: JavaScript 练习测试
+    name: JS · 参考答案自洽性
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
         with:
           node-version: "22"
+      - name: 铺开参考答案
+        run: python tools/reference.py restore --all --force
       - name: 运行 JS 测试
         working-directory: exercises/06-web-js/01-array-utils
         run: node --test

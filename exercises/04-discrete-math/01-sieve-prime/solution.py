@@ -1,62 +1,39 @@
 # -*- coding: utf-8 -*-
 """01 · 素数筛与质因数分解
 
-自己先写一版，然后把这里替换掉。
-卡住了就 `git checkout -- exercises/04-discrete-math/01-sieve-prime/solution.py` 回到参考实现。
+【你的作答区】把下面的函数体补全，然后在本目录跑：
+
+    python -m unittest -v
+
+- 题面：同目录的 README.md
+- 对答案（不改动文件）：python tools/reference.py show 01-sieve-prime
+- 从零重来：python tools/reference.py blank 01-sieve-prime
+- 还原参考实现：python tools/reference.py restore 01-sieve-prime
 """
 
 
 def sieve(limit: int) -> list[int]:
     """返回 [2, limit] 内的全部素数。O(n log log n)。"""
-    if limit < 2:
-        return []
-    flags = bytearray([1]) * (limit + 1)
-    flags[0] = flags[1] = 0
-    for p in range(2, int(limit ** 0.5) + 1):
-        if flags[p]:
-            flags[p * p::p] = b"\x00" * len(flags[p * p::p])
-    return [i for i in range(2, limit + 1) if flags[i]]
+    raise NotImplementedError('TODO: 实现 sieve')
 
 
 def is_prime(n: int) -> bool:
     """试除判素，做到 sqrt(n)；用 6k±1 轮子跳过明显的合数。"""
-    if n < 2:
-        return False
-    if n < 4:
-        return True                      # 2, 3
-    if n % 2 == 0 or n % 3 == 0:
-        return False
-    d = 5
-    while d * d <= n:
-        if n % d == 0 or n % (d + 2) == 0:
-            return False
-        d += 6
-    return True
+    raise NotImplementedError('TODO: 实现 is_prime')
 
 
 def prime_factors(n: int) -> list[int]:
     """n 的质因数（带重数），升序；n < 2 返回 []。"""
-    if n < 0:
-        raise ValueError("n must be non-negative")
-    factors: list[int] = []
-    d = 2
-    while d * d <= n:
-        while n % d == 0:
-            factors.append(d)
-            n //= d
-        d += 1 if d == 2 else 2          # 2 之后只试奇数
-    if n > 1:
-        factors.append(n)
-    return factors
+    raise NotImplementedError('TODO: 实现 prime_factors')
 
 
 def count_primes(limit: int) -> int:
     """π(limit)：不超过 limit 的素数个数。"""
-    return len(sieve(limit))
+    raise NotImplementedError('TODO: 实现 count_primes')
 
 
-if __name__ == "__main__":
-    print("30 以内素数:", sieve(30))
-    print("97 是素数吗:", is_prime(97), "| 91 是素数吗:", is_prime(91))
-    print("360 的质因数:", prime_factors(360))
-    print("π(1_000_000) =", count_primes(1_000_000))
+if __name__ == '__main__':
+    print('30 以内素数:', sieve(30))
+    print('97 是素数吗:', is_prime(97), '| 91 是素数吗:', is_prime(91))
+    print('360 的质因数:', prime_factors(360))
+    print('π(1_000_000) =', count_primes(1000000))

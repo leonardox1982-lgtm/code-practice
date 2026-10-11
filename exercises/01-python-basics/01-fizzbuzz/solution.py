@@ -1,26 +1,26 @@
 # -*- coding: utf-8 -*-
 """01 · FizzBuzz
 
-自己先写一版，然后把这里替换掉。
-卡住了就 `git checkout -- exercises/01-python-basics/01-fizzbuzz/solution.py` 回到参考实现。
+【你的作答区】把下面的函数体补全，然后在本目录跑：
+
+    python -m unittest -v
+
+- 题面：同目录的 README.md
+- 对答案（不改动文件）：python tools/reference.py show 01-fizzbuzz
+- 从零重来：python tools/reference.py blank 01-fizzbuzz
+- 还原参考实现：python tools/reference.py restore 01-fizzbuzz
 """
 
 
 def fizzbuzz(n: int) -> str:
     """按 FizzBuzz 规则返回 n 对应的字符串。"""
-    if n % 15 == 0:
-        return "FizzBuzz"
-    if n % 3 == 0:
-        return "Fizz"
-    if n % 5 == 0:
-        return "Buzz"
-    return str(n)
+    raise NotImplementedError('TODO: 实现 fizzbuzz')
 
 
 def fizzbuzz_list(n: int) -> list[str]:
     """返回 1..n 的 FizzBuzz 序列，n <= 0 时返回空列表。"""
-    return [fizzbuzz(i) for i in range(1, n + 1)]
+    raise NotImplementedError('TODO: 实现 fizzbuzz_list')
 
 
-if __name__ == "__main__":
-    print(" ".join(fizzbuzz_list(20)))
+if __name__ == '__main__':
+    print(' '.join(fizzbuzz_list(20)))

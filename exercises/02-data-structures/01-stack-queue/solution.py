@@ -1,13 +1,17 @@
 # -*- coding: utf-8 -*-
 """01 · 栈与队列
 
-自己先写一版，然后把这里替换掉。
-卡住了就 `git checkout -- exercises/02-data-structures/01-stack-queue/solution.py` 回到参考实现。
+【你的作答区】把下面的函数体补全，然后在本目录跑：
+
+    python -m unittest -v
+
+- 题面：同目录的 README.md
+- 对答案（不改动文件）：python tools/reference.py show 01-stack-queue
+- 从零重来：python tools/reference.py blank 01-stack-queue
+- 还原参考实现：python tools/reference.py restore 01-stack-queue
 """
-
 from collections import deque
-
-_PAIRS = {")": "(", "]": "[", "}": "{"}
+_PAIRS = {')': '(', ']': '[', '}': '{'}
 _OPENERS = set(_PAIRS.values())
 
 
@@ -15,90 +19,71 @@ class Stack:
     """后进先出（LIFO）。底层用 list，append / pop 都是 O(1)。"""
 
     def __init__(self) -> None:
-        self._data: list = []
+        raise NotImplementedError('TODO: 实现 __init__')
 
     def push(self, item):
-        self._data.append(item)
-        return self
+        raise NotImplementedError('TODO: 实现 push')
 
     def pop(self):
-        if not self._data:
-            raise IndexError("pop from empty stack")
-        return self._data.pop()
+        raise NotImplementedError('TODO: 实现 pop')
 
     def peek(self):
-        if not self._data:
-            raise IndexError("peek from empty stack")
-        return self._data[-1]
+        raise NotImplementedError('TODO: 实现 peek')
 
     def is_empty(self) -> bool:
-        return not self._data
+        raise NotImplementedError('TODO: 实现 is_empty')
 
     def to_list(self) -> list:
         """从栈底到栈顶。"""
-        return list(self._data)
+        raise NotImplementedError('TODO: 实现 to_list')
 
     def __len__(self) -> int:
-        return len(self._data)
+        raise NotImplementedError('TODO: 实现 __len__')
 
     def __repr__(self) -> str:
-        return f"Stack({self._data!r})"
+        raise NotImplementedError('TODO: 实现 __repr__')
 
 
 class Queue:
     """先进先出（FIFO）。底层用 deque，避免 list.pop(0) 的 O(n)。"""
 
     def __init__(self) -> None:
-        self._data: deque = deque()
+        raise NotImplementedError('TODO: 实现 __init__')
 
     def enqueue(self, item):
-        self._data.append(item)
-        return self
+        raise NotImplementedError('TODO: 实现 enqueue')
 
     def dequeue(self):
-        if not self._data:
-            raise IndexError("dequeue from empty queue")
-        return self._data.popleft()
+        raise NotImplementedError('TODO: 实现 dequeue')
 
     def peek(self):
-        if not self._data:
-            raise IndexError("peek from empty queue")
-        return self._data[0]
+        raise NotImplementedError('TODO: 实现 peek')
 
     def is_empty(self) -> bool:
-        return not self._data
+        raise NotImplementedError('TODO: 实现 is_empty')
 
     def to_list(self) -> list:
         """从队首到队尾。"""
-        return list(self._data)
+        raise NotImplementedError('TODO: 实现 to_list')
 
     def __len__(self) -> int:
-        return len(self._data)
+        raise NotImplementedError('TODO: 实现 __len__')
 
     def __repr__(self) -> str:
-        return f"Queue({list(self._data)!r})"
+        raise NotImplementedError('TODO: 实现 __repr__')
 
 
 def is_balanced(text: str) -> bool:
     """判断 ( ) [ ] { } 是否严格配对，其他字符忽略。"""
-    stack = Stack()
-    for ch in text:
-        if ch in _OPENERS:
-            stack.push(ch)
-        elif ch in _PAIRS:
-            if stack.is_empty() or stack.pop() != _PAIRS[ch]:
-                return False
-    return stack.is_empty()
+    raise NotImplementedError('TODO: 实现 is_balanced')
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     s = Stack()
     s.push(1).push(2).push(3)
-    print(s, "-> pop:", s.pop(), "->", s)
-
+    print(s, '-> pop:', s.pop(), '->', s)
     q = Queue()
-    q.enqueue("a").enqueue("b")
-    print(q, "-> dequeue:", q.dequeue(), "->", q)
-
-    for text in ("a(b[c]{d})e", "([)]", "((", "", ")"):
-        print(f"{is_balanced(text)!s:>5}  {text!r}")
+    q.enqueue('a').enqueue('b')
+    print(q, '-> dequeue:', q.dequeue(), '->', q)
+    for text in ('a(b[c]{d})e', '([)]', '((', '', ')'):
+        print(f'{is_balanced(text)!s:>5}  {text!r}')

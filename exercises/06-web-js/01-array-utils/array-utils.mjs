@@ -11,7 +11,7 @@
  * @returns {Array}
  */
 export function unique(values) {
-  return [...new Set(values)];
+  throw new Error('TODO: 实现 unique');
 }
 
 /**
@@ -21,14 +21,7 @@ export function unique(values) {
  * @returns {Array<Array>}
  */
 export function chunk(values, size) {
-  if (!Number.isInteger(size) || size <= 0) {
-    throw new RangeError(`size 必须是正整数，收到 ${size}`);
-  }
-  const out = [];
-  for (let i = 0; i < values.length; i += size) {
-    out.push(values.slice(i, i + size));
-  }
-  return out;
+  throw new Error('TODO: 实现 chunk');
 }
 
 /**
@@ -38,12 +31,7 @@ export function chunk(values, size) {
  * @returns {Record<string, Array>}
  */
 export function groupBy(values, keyFn) {
-  const out = {};
-  values.forEach((value, index) => {
-    const key = keyFn(value, index);
-    (out[key] ??= []).push(value);
-  });
-  return out;
+  throw new Error('TODO: 实现 groupBy');
 }
 
 /**
@@ -53,16 +41,7 @@ export function groupBy(values, keyFn) {
  * @returns {Array}
  */
 export function flatten(values, depth = Infinity) {
-  if (depth <= 0) return values.slice();
-  const out = [];
-  for (const value of values) {
-    if (Array.isArray(value)) {
-      out.push(...flatten(value, depth - 1));
-    } else {
-      out.push(value);
-    }
-  }
-  return out;
+  throw new Error('TODO: 实现 flatten');
 }
 
 /**
@@ -71,7 +50,7 @@ export function flatten(values, depth = Infinity) {
  * @returns {number}
  */
 export function sum(values) {
-  return values.reduce((acc, value) => acc + value, 0);
+  throw new Error('TODO: 实现 sum');
 }
 
 /**
@@ -81,10 +60,5 @@ export function sum(values) {
  * @returns {Record<string, number>}
  */
 export function countBy(values, keyFn) {
-  const out = {};
-  for (const value of values) {
-    const key = keyFn(value);
-    out[key] = (out[key] ?? 0) + 1;
-  }
-  return out;
+  throw new Error('TODO: 实现 countBy');
 }

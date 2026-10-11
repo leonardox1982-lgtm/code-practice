@@ -58,8 +58,9 @@ README_TMPL = """# {num} · {title}
 SOLUTION_TMPL = '''# -*- coding: utf-8 -*-
 """{num} · {title}
 
-自己先写一版，然后把这里替换掉。
-卡住了就 `git checkout -- {rel_path}/solution.py` 回到参考实现。
+先在这里写**参考实现**并把测试跑通，然后归档成正式练习：
+
+    python tools/reference.py save {rel_path}
 """
 
 
