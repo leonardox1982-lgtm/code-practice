@@ -1,0 +1,9 @@
+{
+  "name": "code-practice-array-utils",
+  "private": true,
+  "type": "module",
+  "description": "数组工具集练习（零依赖，用 node:test）",
+  "scripts": {
+    "test": "node --test"
+  }
+}
