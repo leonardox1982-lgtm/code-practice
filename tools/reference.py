@@ -274,7 +274,7 @@ def _write_all(
             skipped += 1
             continue
         target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_text(produce(ref), encoding="utf-8")
+        target.write_text(produce(ref), encoding="utf-8", newline="\n")
         print(f"  已{action} {rel_slug(ref)}/{ref.name}")
         changed += 1
 
@@ -319,7 +319,7 @@ def cmd_save(args: argparse.Namespace) -> int:
         shutil.copy2(post, ref)
         print(f"  已归档 {rel.as_posix()}")
         if not args.keep:
-            post.write_text(make_blank(ref), encoding="utf-8")
+            post.write_text(make_blank(ref), encoding="utf-8", newline="\n")
             print(f"  已清成骨架 {rel.as_posix()}")
 
     if not args.keep:
