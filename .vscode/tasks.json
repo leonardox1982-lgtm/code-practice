@@ -1,0 +1,64 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "测试：跑全部练习",
+      "type": "shell",
+      "command": "python",
+      "args": ["${workspaceFolder}/tools/run_all_tests.py"],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "测试：只跑当前打开的练习",
+      "type": "shell",
+      "command": "python",
+      "args": ["-m", "unittest", "-v"],
+      "options": {
+        "cwd": "${fileDirname}"
+      },
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "跑当前文件",
+      "type": "shell",
+      "command": "python",
+      "args": ["${file}"],
+      "options": {
+        "cwd": "${fileDirname}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "新建练习（会提示输入赛道与题号）",
+      "type": "shell",
+      "command": "python",
+      "args": ["${workspaceFolder}/tools/new_exercise.py", "${input:track}", "${input:slug}"],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "track",
+      "type": "promptString",
+      "description": "赛道目录名",
+      "default": "03-algorithms"
+    },
+    {
+      "id": "slug",
+      "type": "promptString",
+      "description": "练习目录名（题号-英文短名）",
+      "default": "04-two-sum"
+    }
+  ]
+}
